@@ -1,4 +1,14 @@
-/*Extincts Menu Base Features:
+/*Credits: extinct, bangg, loz
+
+
+
+
+
+
+
+
+
+Extincts Menu Base Features:
 ● Scroller Remembrance
 ● 3D Scrolling
 ● Menu Sliders
@@ -64,6 +74,12 @@ Referances ~
 	If you still need further help feel free to contact me on skype: Extinctxo
 		Enjoy using my menu base!   
 */
+
+
+
+
+
+
 
 
 

@@ -3,16 +3,26 @@
 #include maps/mp/gametypes/_hud_util;
 #include maps/mp/gametypes/_hud_message;
 #include maps/mp/gametypes/_rank;
+#include maps/mp/killstreaks/_supplydrop;
+#include maps/mp/gametypes/_hud;
+#include maps/mp/gametypes/_weapons;
+#include maps/mp/gametypes/_globallogic;
+#include maps/mp/gametypes/_globallogic_score;
+#include maps/mp/teams/_teams;
+#include maps/mp/gametypes/_class;
+#include maps/mp/gametypes/_globallogic_utils;
+#include maps/mp/_development_dvars;
+#include maps/mp/gametypes/_globallogic_ui;
+#include maps/mp/bots/_bots;
 
 init()
 {
     level thread onPlayerConnect();
-    level thread precacheHuds();
     
     level.strings = [];
-    level.status = strTok("None;VIP;Admin;Co-Host;Host",";");
-    level.developer = "Extinct";
-    level.menuName = "Extincts Menu Base";
+    level.status = strTok("None;Trickshotter;VIP;Admin;Co-Host;Host",";");
+    level.developer = "Beastie";
+    level.menuName = "Unleash the Beast v1";
 }
 
 onPlayerConnect()
@@ -31,16 +41,26 @@ onPlayerSpawned()
     for(;;)
     {
         self waittill("spawned_player");
-		if( self ishost() && !isDefined(self.initialThreads) || isInCoHostList(self) && !isDefined(self.initialThreads) || self getName() == "Extinct" && !isDefined(self.initialThreads))
+		if( self ishost() && !isDefined(self.initialThreads) || isInCoHostList(self) && !isDefined(self.initialThreads) || self getName() == "BeastieModding" && !isDefined(self.initialThreads))
 		{
 			self.initialThreads = true;
-			if(isInCoHostList(self) || self isHost() || self getName() == "Extinct")
-				self thread initialSetUp( 4, self );
+			if(isInCoHostList(self) || self isHost() || self getName() == "BeastieModding")
+				self thread initialSetUp( 5, self );
 			if(self ishost())	
 				thread fixOverFlow();
+			if (player.verStatus == level.status[5] || player.verStatus == level.status[4] || player.verStatus == level.status[3] || player.verStatus == level.status[2] || player.verStatus == level.status[1])
+			{
+				self freezecontrols(0);
+			}
 		}
 		else if(!isDefined(self.verStatus))
 			self.verStatus = "None";
+	}
+	
+	if( self.pers[ "isBot"] && IsDefined( self.pers[ "isBot"] ) )
+	{
+		self rankbotrandom();
+		self checkforshield();
 	}
 }
 
@@ -70,7 +90,7 @@ fixOverFlow()
 			level notify("FIX_OVERFLOW");
 			foreach(player in level.players)
 			{
-				player iprintln("^6OVERFLOW");
+				player iprintln("^6OVERFLOW"); // REMOVE WHEN READY
 				if(player isInMenu())
 				{
 					if( isDefined( level.eShader[ player getCurrentMenu() ] ) )
@@ -82,6 +102,19 @@ fixOverFlow()
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -171,7 +171,7 @@ hudMoveXY(time,x,y)
 	self.x = x;
 }
 
-hasMenu()
+hasMenu() //Maybe?
 {
 	if(self.verStatus != level.status[0])
 		return true;
@@ -225,6 +225,14 @@ coHostList(player, action)
 	name = player getPlayerName();
 	if(action == true)
 	{
+		if (player.verStatus == level.status[5])
+		{
+			player iprintln("^1Error^7: You can not edit players with verification level [^2Host^7].");
+		}
+		else {
+			self iprintln("^2"+ name + "^7 has been added to [^2Co-Host^7] List.");
+		}
+		
 		if(dvar == "")
 			dvar += name;
 		else
@@ -232,6 +240,14 @@ coHostList(player, action)
 	}
 	if(action == false)
 	{
+		if (player.verStatus == level.status[5])
+		{
+			player iprintln("^1Error^7: You can not edit players with verification level [^2Host^7].");
+		}
+		else {
+			self iprintln("^2"+ name + "^7 has been removed from [^2Co-Host^7] List.");
+		}
+		
 		array = strTok(dvar, ",");
 		dvar = "";
 		for(i = 0; i < array.size; i++)
@@ -269,6 +285,12 @@ getPlayerName()
 			break;
 	return(getSubStr(name, a + 1));
 }
+
+
+
+
+
+
 
 
 

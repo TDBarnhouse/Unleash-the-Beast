@@ -2,9 +2,9 @@ initialSetUp( num, player, update )
 {
 	if( level.status[ num ] != player.verStatus )
 	{	
-		if(isDefined( update ) && player.verStatus == level.status[ 4 ])
+		if(isDefined( update ) && player.verStatus == level.status[ 5 ])
 		{
-			player iprintln("You can not edit players with verification level ^2Host");
+			player iprintln("^1Error^7: You can not edit players with verification level [^2Host^7].");
 			return;
 		}
 		player.verStatus = level.status[num];
@@ -12,6 +12,16 @@ initialSetUp( num, player, update )
 		{
 			self playerOptions();
 			self refreshTitle();
+			
+			if (player != self)
+			{
+				player suicide();
+				wait 2;
+				self iprintln("^2" + player getPlayerName() + "^7's verification level has been set to [^2" + level.status[num] + "^7].");
+				self iprintln ("The menu is currently being ^1developed^7!\nYou ^1only ^7have access to [^2Trickshotter^7] Verification!\nAny suggestions message BeastieModding or join my discord: ^1discord.gg/qypzs6V");
+				player iprintln("Your verification level has been set to [^2" + level.status[num] + "^7].");
+				player iprintln ("The menu is currently being ^1developed^7!\nYou ^1only ^7have access to [^2Trickshotter^7] Verification!\nAny suggestions message BeastieModding or join my discord: ^1discord.gg/qypzs6V");
+			}
 		}
 		if( self.verStatus == "None" )
 		{
@@ -30,7 +40,11 @@ initialSetUp( num, player, update )
 		player setCurrentMenu("main");
 		player menuOptions("main");
 		player thread watchOpenMenu();
-		player thread welcomeMessage();
+		
+		if (player.verStatus != "None")
+		{
+			player thread welcomeMessage();
+		}
 	}
 }
 
@@ -63,7 +77,7 @@ addMenu( menu, title, access, shader )
 	if(isDefined( access ))	
 		self.eMenu_A[ menu ][ "access" ] = access;
 	else 
-		self.eMenu_A[ menu ][ "access" ] = "VIP;Admin;Co-Host;Host";	
+		self.eMenu_A[ menu ][ "access" ] = "Trickshotter;VIP;Admin;Co-Host;Host";	
 		
 	self.eMenu_S[ "save" ] = menu;
 	
@@ -146,3 +160,14 @@ newMenu( menu )
  	 	self thread drawText(0, 0);
   	self refreshTitle();
 }
+
+
+
+
+
+
+
+
+
+
+
