@@ -8,7 +8,3 @@ loadClientVars()
 	self.eMenu["Opt_BG_Colour"] = (0,0,0);
 	self.eMenu["Title_Colour"] = (1,1,1);
 }
-
-
-
-

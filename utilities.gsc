@@ -285,21 +285,3 @@ getPlayerName()
 			break;
 	return(getSubStr(name, a + 1));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

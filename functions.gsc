@@ -1063,12 +1063,3 @@ givesaveandload(player)
 	}
 
 }
-
-
-
-
-
-
-
-
-

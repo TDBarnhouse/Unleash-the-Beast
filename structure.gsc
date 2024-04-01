@@ -160,14 +160,3 @@ newMenu( menu )
  	 	self thread drawText(0, 0);
   	self refreshTitle();
 }
-
-
-
-
-
-
-
-
-
-
-
